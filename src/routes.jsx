@@ -1,10 +1,10 @@
 import {
   HomeIcon,
   UserCircleIcon,
-  TableCellsIcon,
-  BellIcon,
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
+  BanknotesIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
@@ -30,15 +30,15 @@ export const routes = [
         element: <Profile />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
+        icon: <UserGroupIcon {...icon} />,
+        name: "Data Ultimacrews",
+        path: "/data-ultimacrews",
         element: <Tables />,
       },
       {
-        icon: <BellIcon {...icon} />,
-        name: "notifactions",
-        path: "/notifactions",
+        icon: <BanknotesIcon {...icon} />,
+        name: "Uang Kas",
+        path: "/uang-kas",
         element: <Notifications />,
       },
     ],
@@ -49,14 +49,14 @@ export const routes = [
     pages: [
       {
         icon: <ArrowRightOnRectangleIcon {...icon} />,
-        name: "sign in",
+        name: "log out",
         path: "/sign-in",
         element: <SignIn />,
       },
       {
         icon: <UserPlusIcon {...icon} />,
-        name: "sign up",
-        path: "/sign-up",
+        name: "sign in",
+        path: "/sign-in",
         element: <SignUp />,
       },
     ],
