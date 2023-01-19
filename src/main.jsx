@@ -23,12 +23,12 @@ import "../public/css/tailwind.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter history={useNavigate}>
+    <HashRouter>
       <ThemeProvider>
         <MaterialTailwindControllerProvider>
           <App />
         </MaterialTailwindControllerProvider>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
