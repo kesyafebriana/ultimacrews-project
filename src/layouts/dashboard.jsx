@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { IconButton } from "@material-tailwind/react";
@@ -8,32 +9,58 @@ import {
   Footer,
 } from "@/widgets/layout";
 import routes from "@/routes";
+import routesuser from "@/routesuser";
+import routesadmin from "@/routesadmin";
+import routesbendahara from "@/routesbendahara";
+import routeshrd from "@/routeshrd";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
 
+  const userBendahara = false;
+  const userHrd = false;
+  const userAdmin = false;
+  const user = true;
+  
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
-      <Sidenav
-        routes={routes}
-        brandImg={
-          sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
-        }
-      />
+      {userBendahara ?
+        <Sidenav
+          routes={routesbendahara}
+          brandImg={
+            sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
+          }
+        /> : null
+      }
+      {userHrd ?
+        <Sidenav
+          routes={routeshrd}
+          brandImg={
+            sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
+          }
+        /> : null
+      }
+      {userAdmin ?
+        <Sidenav
+          routes={routesadmin}
+          brandImg={
+            sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
+          }
+        /> : null
+      }
+      {user ?
+        <Sidenav
+          routes={routesuser}
+          brandImg={
+            sidenavType === "dark" ? "/img/logo-ct.png" : "/img/logo-ct-dark.png"
+          }
+        /> : null
+      }
       <div className="p-4 xl:ml-80">
         <DashboardNavbar />
         <Configurator />
-        <IconButton
-          size="lg"
-          color="white"
-          className="fixed bottom-8 right-8 z-40 rounded-full shadow-blue-gray-900/10"
-          ripple={false}
-          onClick={() => setOpenConfigurator(dispatch, true)}
-        >
-          <Cog6ToothIcon className="h-5 w-5" />
-        </IconButton>
         <Routes>
           {routes.map(
             ({ layout, pages }) =>
