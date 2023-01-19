@@ -1,0 +1,23 @@
+[
+  {
+    "id":1,
+    "userIdSender":"2",
+    "userIdReceiver":"1",
+    "status":true,
+    "notes":"Testing Feedback 1"
+  },
+  {
+    "id":2,
+    "userIdSender":"3",
+    "userIdReceiver":"1",
+    "status":false,
+    "notes":"Blablabla"
+  },
+  {
+    "id":3,
+    "userIdSender":"1",
+    "userIdReceiver":"2",
+    "status":false,
+    "notes":"Testing Feedback 3"
+  }
+]

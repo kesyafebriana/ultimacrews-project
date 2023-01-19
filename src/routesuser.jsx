@@ -25,18 +25,6 @@ export const routes = [
         element: <Home />,
       },
       {
-        icon: <UserCircleIcon {...icon} />,
-        name: "Profile",
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        icon: <UserCircleIcon {...icon} />,
-        name: "Profile Ultimacrews",
-        path: "/profile/:id",
-        element: <Profile />,
-      },
-      {
         icon: <UserGroupIcon {...icon} />,
         name: "Data Ultimacrews",
         path: "/data-ultimacrews",

@@ -25,24 +25,6 @@ export const routes = [
         element: <Home />,
       },
       {
-        icon: <UserCircleIcon {...icon} />,
-        name: "Profile",
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        icon: <UserCircleIcon {...icon} />,
-        name: "Profile Ultimacrews",
-        path: "/profile/:id",
-        element: <Profile />,
-      },
-      {
-        icon: <UserGroupIcon {...icon} />,
-        name: "Data Ultimacrews",
-        path: "/data-ultimacrews",
-        element: <Tables />,
-      },
-      {
         icon: <BanknotesIcon {...icon} />,
         name: "Uang Kas",
         path: "/uang-kas",
@@ -51,7 +33,7 @@ export const routes = [
     ],
   },
   {
-    title: "log out",
+    title: "auth pages",
     layout: "auth",
     pages: [
       {
@@ -59,6 +41,12 @@ export const routes = [
         name: "log out",
         path: "/sign-in",
         element: <SignIn />,
+      },
+      {
+        icon: <UserPlusIcon {...icon} />,
+        name: "sign in",
+        path: "/sign-in",
+        element: <SignUp />,
       },
     ],
   },
