@@ -12,20 +12,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 
 import { HashRouter } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { browserHistory } from "react-router";
 
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "@/context";
 import "../public/css/tailwind.css";
 
-const hist = createBrowserHistory();
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter history={hist}>
+    <BrowserRouter history={browserHistory}>
       <ThemeProvider>
         <MaterialTailwindControllerProvider>
           <App />
