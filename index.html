@@ -15,6 +15,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" sizes="30x16" href="/src/assets/logo-radio-kecil.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="">
+	  <meta name="keywords" content="">
     <title>ULTIMACREWS</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
@@ -27,9 +29,29 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!--Regular Datatables CSS-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <!--Datatables -->
+    <!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    <!-- <script>
+      $(document).ready(function() {
+        $('#example').DataTable({
+            responsive: true
+          })
+          .columns.adjust()
+          .responsive.recalc();
+      });
+    </script> -->
   </body>
 </html>
