@@ -47,29 +47,54 @@ export function Notifications() {
               Submit Payment
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4 p-4 overflow-auto">
+          <CardBody className="flex flex-col gap-4 overflow-auto p-4">
             <div class="grid grid-cols-3 gap-2">
               <Typography variant="h7">File</Typography>
               <div class="col-span-2">
-                <Button fullWidth variant="outlined" size="sm" ripple={true}>Select File</Button>
+                <Input
+                  class="bg-white-50 block w-full cursor-pointer rounded border border-blue-400 bg-white text-sm text-gray-900"
+                  id="file_input"
+                  type="file"
+                />
               </div>
               <Typography variant="h7">Month</Typography>
               <div class="col-span-2">
-              <Menu placement="bottom">
-                <MenuHandler>
-                  <Button fullWidth size="sm" ripple={true}>Select Month</Button>
-                </MenuHandler>
-                <MenuList>
-                  <MenuItem>Januari</MenuItem>
-                  <MenuItem>Februari</MenuItem>
-                  <MenuItem>dst...</MenuItem>
-                </MenuList>
-              </Menu>
+                <Menu placement="bottom">
+                  <MenuHandler>
+                    <Button
+                      fullWidth
+                      variant="outlined"
+                      size="sm"
+                      ripple={true}
+                    >
+                      Select Month
+                    </Button>
+                  </MenuHandler>
+                  <MenuList>
+                    <MenuItem>Januari</MenuItem>
+                    <MenuItem>Februari</MenuItem>
+                    <MenuItem>Maret</MenuItem>
+                    <MenuItem>April</MenuItem>
+                    <MenuItem>Mei</MenuItem>
+                    <MenuItem>Juni</MenuItem>
+                    <MenuItem>Juli</MenuItem>
+                    <MenuItem>Agustus</MenuItem>
+                    <MenuItem>September</MenuItem>
+                    <MenuItem>Oktober</MenuItem>
+                    <MenuItem>November</MenuItem>
+                    <MenuItem>Desember</MenuItem>
+                  </MenuList>
+                </Menu>
               </div>
               <Typography variant="h7">Note</Typography>
-              <div class="cols-span-2">
-                <Input className="h-5/6" label="Optional" />
+              <div class="col-span-2 pt-1">
+                <Input className="h-5/5" label="Optional" />
               </div>
+            </div>
+            <div class="col-span-2">
+              <Button fullWidth ripple={true}>
+                Submit File
+              </Button>
             </div>
           </CardBody>
         </Card>
@@ -84,52 +109,63 @@ export function Notifications() {
               Change Password
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4 p-4 overflow-auto">
-            <div class="columns-2">
+          <CardBody className="flex flex-col gap-4 overflow-hidden p-4 ">
+            <div class="columns-3">
               <Typography variant="h7">Old Password</Typography>
+              <Input className="h-5/6" />
             </div>
-            <div class="columns-2">
-            <Typography variant="h7">New Password</Typography>
+            <div class="columns-3">
+              <Typography variant="h7">New Password</Typography>
+              <Input className="h-5/6" />
             </div>
-            <div class="columns-2">
-            <Typography variant="h7">Confirm Password</Typography>
+            <div class="columns-3">
+              <Typography variant="h7">Confirm Password</Typography>
+              <Input className="h-5/6" />
+            </div>
+            <div class="col-span-2 pr-36">
+              <Button fullWidth ripple={true}>
+                Update Password
+              </Button>
             </div>
           </CardBody>
         </Card>
       </div>
       <Card>
-          <CardHeader
-            color="transparent"
-            floated={false}
-            shadow={false}
-            className="m-0 p-4"
-          >
-            <Typography variant="h5" color="blue-gray">
-              Transaction List
-            </Typography>
-          </CardHeader>
-          <CardBody className="flex flex-col gap-4 p-4">
-            <div className="grid grid-cols-3 gap-2">
-              <div className="col-span-3 relative overflow-x-auto">
-                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                  <div id='recipients' class="overflow-x-auto p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                    <table id="example" class="stripe hover min-w-full pt-4 pb-4">
-                      <thead>
-                        <tr>
-                          <th data-priority="1">Transaction Date</th>
-                          <th data-priority="2">Image</th>
-                          <th data-priority="3">Month</th>
-                          <th data-priority="4">Notes</th>
-                          <th data-priority="5">Status</th>
-                        </tr>
-                      </thead>
-                    </table>
-                  </div>
+        <CardHeader
+          color="transparent"
+          floated={false}
+          shadow={false}
+          className="m-0 p-4"
+        >
+          <Typography variant="h5" color="blue-gray">
+            Transaction List
+          </Typography>
+        </CardHeader>
+        <CardBody className="flex flex-col gap-4 p-4">
+          <div className="grid grid-cols-3 gap-2">
+            <div className="relative col-span-3 overflow-x-auto">
+              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div
+                  id="recipients"
+                  class="mt-6 overflow-x-auto rounded bg-white p-8 shadow lg:mt-0"
+                >
+                  <table id="example" class="stripe hover min-w-full pt-4 pb-4">
+                    <thead>
+                      <tr>
+                        <th data-priority="1">Transaction Date</th>
+                        <th data-priority="2">Image</th>
+                        <th data-priority="3">Month</th>
+                        <th data-priority="4">Notes</th>
+                        <th data-priority="5">Status</th>
+                      </tr>
+                    </thead>
+                  </table>
                 </div>
               </div>
             </div>
-          </CardBody>
-        </Card>
+          </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }
