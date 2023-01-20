@@ -14,28 +14,18 @@ import {
   Select,
   Option,
 } from "@material-tailwind/react";
+import UserData from "../../data/users.json";
 
 export function Notifications() {
-  const [showAlerts, setShowAlerts] = React.useState({
-    blue: true,
-    green: true,
-    orange: true,
-    red: true,
-  });
-  const [showAlertsWithIcon, setShowAlertsWithIcon] = React.useState({
-    blue: true,
-    green: true,
-    orange: true,
-    red: true,
-  });
-  const alerts = ["blue", "green", "orange", "red"];
+  const loggedUser = 1;
+  const user = UserData[loggedUser - 1];
 
   return (
-    <div className="mx-auto my-20 flex max-w-screen-xl flex-col gap-8">
-      <Typography variant="h4" color="black">
-        Hello, (Nama)
+    <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
+      <Typography className="mt-3 block text-xl font-semibold text-[#011F39]">
+        Hello, {user.name}!
       </Typography>
-      <div class="columns-2">
+      <div class="">
         <Card>
           <CardHeader
             color="transparent"

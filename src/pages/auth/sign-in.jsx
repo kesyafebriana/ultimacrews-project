@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -32,9 +33,11 @@ export function SignIn() {
             <Input type="password" label="Password" size="lg" />
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" className="bg-gradient-to-r from-[#011F39] to-[#629FD4]" fullWidth>
-              Sign In
-            </Button>
+            <Link to="../../dashboard/home">
+              <Button variant="gradient" className="bg-gradient-to-r from-[#011F39] to-[#629FD4]" fullWidth>
+                Sign In
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
