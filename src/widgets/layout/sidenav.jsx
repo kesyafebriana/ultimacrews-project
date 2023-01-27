@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   Button,
@@ -9,6 +9,9 @@ import {
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 import LogoRadio from "../../assets/logo-radio-white.png";
 
+import { useDispatch, useSelector } from "react-redux";
+import { Logout, reset } from "@/features/authSlice.js";
+
 export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
@@ -17,6 +20,16 @@ export function Sidenav({ brandImg, brandName, routes }) {
     white: "bg-white shadow-lg",
     transparent: "bg-transparent",
   };
+
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  const logout = () => {
+    dispatch2(Logout());
+    dispatch2(reset());
+    navigate("/auth/sign-in");
+  }
 
   return (
     <aside
@@ -62,6 +75,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
                     <Button
+                      onClick={logout}
                       variant={isActive ? "gradient" : "text"}
                       color={
                         isActive

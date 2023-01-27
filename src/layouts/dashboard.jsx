@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import { IconButton } from "@material-tailwind/react";
@@ -15,6 +15,10 @@ import routesbendahara from "@/routesbendahara";
 import routeshrd from "@/routeshrd";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "@/features/authSlice.js";
+
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
@@ -23,6 +27,20 @@ export function Dashboard() {
   const userHrd = false;
   const userAdmin = false;
   const user = true;
+
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { isError } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch2(getMe());
+  }, [dispatch2]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
   
   return (
     <div className="min-h-screen bg-blue-gray-50/50">

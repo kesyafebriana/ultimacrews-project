@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -8,10 +8,22 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import UserData from '../../data/users.json';
+import axios from "axios";
 
 export function Tables() {
   const [name, setName] = useState('');
   const [foundUsers, setFoundUsers] = useState(UserData);
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    
+  });
+
+  const getUsers = async () => {
+    const response = await axios.get("http://localhost:5000/users");
+    setUsers(response.data);
+  };
 
   const filter = (e) => {
     const keyword = e.target.value;

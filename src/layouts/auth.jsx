@@ -9,6 +9,7 @@ import { Navbar, Footer } from "@/widgets/layout";
 import routes from "@/routes";
 
 export function Auth() {
+
   const navbarRoutes = [
     {
       name: "dashboard",

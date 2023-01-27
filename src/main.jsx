@@ -12,17 +12,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+<<<<<<< Updated upstream
 import { BrowserRouter } from "react-router-dom";
+=======
+// import { BrowserRouter } from "react-router-dom";
+
+import { BrowserRouter, HashRouter, useNavigate } from "react-router-dom";
+// import { browserHistory } from "react-router";
+
+>>>>>>> Stashed changes
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "@/context";
 import "../public/css/tailwind.css";
+
+import axios from "axios";
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+
+axios.defaults.withCredentials = true;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <MaterialTailwindControllerProvider>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </MaterialTailwindControllerProvider>
       </ThemeProvider>
     </BrowserRouter>

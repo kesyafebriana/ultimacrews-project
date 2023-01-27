@@ -16,6 +16,7 @@ export function Home() {
   const loggedUser = 1;
   const quote = random.int(0,102);
   const user = UserData[loggedUser-1];
+  
   const evaluation = Evaluation.filter(item => item.userIdReceiver.includes(loggedUser));
   return (
     <>
