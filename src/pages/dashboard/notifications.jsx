@@ -26,68 +26,75 @@ export function Notifications() {
         Hello, {user.name}!
       </Typography>
       <div class="">
-        <Card>
-          <CardHeader
-            color="transparent"
-            floated={false}
-            shadow={false}
-            className="m-0 p-4"
-          >
-            <Typography variant="h5" color="blue-gray">
-              Submit Payment
-            </Typography>
-          </CardHeader>
-          <CardBody className="flex flex-col gap-4 overflow-auto p-4">
-            <div class="grid grid-cols-3 gap-2">
-              <Typography variant="h7">File</Typography>
+        <form method="post" enctype="multipart/form-data">
+          <Card>
+            <CardHeader
+              color="transparent"
+              floated={false}
+              shadow={false}
+              className="m-0 p-4"
+            >
+              <Typography variant="h5" color="blue-gray">
+                Submit Payment
+              </Typography>
+            </CardHeader>
+            <CardBody className="flex flex-col gap-4 overflow-auto p-4">
+              <div class="grid grid-cols-3 gap-2">
+                <Typography variant="h7">File</Typography>
+
+                <div class="col-span-2">
+                  <Input
+                    class="bg-white-50 block w-full cursor-pointer rounded border border-blue-400 bg-white text-sm text-gray-900"
+                    id="file_input"
+                    type="file"
+                    name="buktiTRF"
+                  />
+                </div>
+
+                <Typography variant="h7">Month</Typography>
+                <div class="col-span-2">
+
+                  <Menu placement="bottom">
+                    <MenuHandler>
+                      <Button
+                        fullWidth
+                        variant="outlined"
+                        size="sm"
+                        ripple={true}
+                      >
+                        Select Month
+                      </Button>
+                    </MenuHandler>
+                    <MenuList>
+                      <MenuItem>Januari</MenuItem>
+                      <MenuItem>Februari</MenuItem>
+                      <MenuItem>Maret</MenuItem>
+                      <MenuItem>April</MenuItem>
+                      <MenuItem>Mei</MenuItem>
+                      <MenuItem>Juni</MenuItem>
+                      <MenuItem>Juli</MenuItem>
+                      <MenuItem>Agustus</MenuItem>
+                      <MenuItem>September</MenuItem>
+                      <MenuItem>Oktober</MenuItem>
+                      <MenuItem>November</MenuItem>
+                      <MenuItem>Desember</MenuItem>
+                    </MenuList>
+                  </Menu>
+                  
+                </div>
+                <Typography variant="h7">Note</Typography>
+                <div class="col-span-2 pt-1">
+                  <Input className="h-5/5" label="Optional" />
+                </div>
+              </div>
               <div class="col-span-2">
-                <Input
-                  class="bg-white-50 block w-full cursor-pointer rounded border border-blue-400 bg-white text-sm text-gray-900"
-                  id="file_input"
-                  type="file"
-                />
+                <Button type="submit" fullWidth ripple={true}>
+                  Submit File
+                </Button>
               </div>
-              <Typography variant="h7">Month</Typography>
-              <div class="col-span-2">
-                <Menu placement="bottom">
-                  <MenuHandler>
-                    <Button
-                      fullWidth
-                      variant="outlined"
-                      size="sm"
-                      ripple={true}
-                    >
-                      Select Month
-                    </Button>
-                  </MenuHandler>
-                  <MenuList>
-                    <MenuItem>Januari</MenuItem>
-                    <MenuItem>Februari</MenuItem>
-                    <MenuItem>Maret</MenuItem>
-                    <MenuItem>April</MenuItem>
-                    <MenuItem>Mei</MenuItem>
-                    <MenuItem>Juni</MenuItem>
-                    <MenuItem>Juli</MenuItem>
-                    <MenuItem>Agustus</MenuItem>
-                    <MenuItem>September</MenuItem>
-                    <MenuItem>Oktober</MenuItem>
-                    <MenuItem>November</MenuItem>
-                    <MenuItem>Desember</MenuItem>
-                  </MenuList>
-                </Menu>
-              </div>
-              <Typography variant="h7">Note</Typography>
-              <div class="col-span-2 pt-1">
-                <Input className="h-5/5" label="Optional" />
-              </div>
-            </div>
-            <div class="col-span-2">
-              <Button fullWidth ripple={true}>
-                Submit File
-              </Button>
-            </div>
-          </CardBody>
-        </Card>
+            </CardBody>
+          </Card>
+        </form>
         <Card>
           <CardHeader
             color="transparent"

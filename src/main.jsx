@@ -12,15 +12,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-<<<<<<< Updated upstream
-import { BrowserRouter } from "react-router-dom";
-=======
 // import { BrowserRouter } from "react-router-dom";
 
 import { BrowserRouter, HashRouter, useNavigate } from "react-router-dom";
 // import { browserHistory } from "react-router";
 
->>>>>>> Stashed changes
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "@/context";
 import "../public/css/tailwind.css";
