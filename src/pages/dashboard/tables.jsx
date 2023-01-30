@@ -16,12 +16,8 @@ export function Tables() {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    
-  });
-
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
+    const response = await axios.get("https://backend-ultimacrews-project-j4t5isdnu-bellashrns.vercel.app/users");
     setUsers(response.data);
   };
 

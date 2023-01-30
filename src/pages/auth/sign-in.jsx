@@ -27,9 +27,9 @@ export function SignIn() {
 
   useEffect(() => {
     if (user || isSuccess) {
-      navigate("/dashboard/home");
+      navigate("/dashboard");
     }
-    dispatch(reset());
+    // dispatch(reset());
   }, [user, isSuccess, dispatch, navigate]);
 
   const Auth = (e) => {

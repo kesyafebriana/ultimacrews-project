@@ -26,6 +26,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 axios.defaults.withCredentials = true;
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

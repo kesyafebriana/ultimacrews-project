@@ -36,11 +36,11 @@ export function Dashboard() {
     dispatch2(getMe());
   }, [dispatch2]);
 
-  useEffect(() => {
-    if (isError) {
-      navigate("/auth/sign-in");
-    }
-  }, [isError, navigate]);
+  // useEffect(() => {
+  //   if (isError) {
+  //     navigate("/auth/sign-in");
+  //   }
+  // }, [isError, navigate]);
   
   return (
     <div className="min-h-screen bg-blue-gray-50/50">

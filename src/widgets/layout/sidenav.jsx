@@ -75,7 +75,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                 <NavLink to={`/${layout}${path}`}>
                   {({ isActive }) => (
                     <Button
-                      onClick={logout}
+                      onClick={name === "log out" ? logout : null}
                       variant={isActive ? "gradient" : "text"}
                       color={
                         isActive
