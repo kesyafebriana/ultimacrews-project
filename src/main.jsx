@@ -15,7 +15,7 @@ import App from "./App";
 // import { BrowserRouter } from "react-router-dom";
 
 import { BrowserRouter, HashRouter, useNavigate } from "react-router-dom";
-// import { browserHistory } from "react-router";
+import { browserHistory } from "react-router";
 
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "@/context";
@@ -30,7 +30,7 @@ axios.defaults.withCredentials = true;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider>
         <MaterialTailwindControllerProvider>
           <Provider store={store}>
@@ -38,6 +38,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           </Provider>
         </MaterialTailwindControllerProvider>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
