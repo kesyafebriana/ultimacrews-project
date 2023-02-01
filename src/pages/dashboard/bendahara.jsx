@@ -24,82 +24,15 @@ import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { authorsTableData, projectsTableData } from "@/data";
 import UangKas from "../../data/uangKas.json";
 
-export function Notifications() {
+export function Bendahara() {
   const loggedUser = 1;
   const user = UserData[loggedUser - 1];
 
   return (
     <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
       <Typography className="mt-3 block text-xl font-semibold text-[#011F39]">
-        Hello, {user.name}!
+        Hello, Bendahara!
       </Typography>
-      <div class="">
-        <form method="post" enctype="multipart/form-data">
-          <Card>
-            <CardHeader
-              color="transparent"
-              floated={false}
-              shadow={false}
-              className="m-0 p-4"
-            >
-              <Typography variant="h5" color="blue-gray">
-                Submit Payment
-              </Typography>
-            </CardHeader>
-            <CardBody className="flex flex-col gap-4 overflow-auto p-4">
-              <div class="grid grid-cols-3 gap-2">
-                <Typography variant="h7">File</Typography>
-
-                <div class="col-span-2">
-                  <input
-                    class="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 from-[#011F39] to-[#629FD4] p-2.5 text-sm text-blue-gray-500 file:mr-2 file:rounded-md file:border-x-0 file:border-y-0 file:bg-gradient-to-br file:px-7 file:py-2 file:text-white focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                    id="default_size"
-                    type="file"
-                  ></input>
-                  <p
-                    class="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                    id="file_input_help"
-                  >
-                    JPG, JPEG, PNG (MAX. 2MB)
-                  </p>
-                </div>
-
-                <Typography variant="h7">Month</Typography>
-                <div class="col-span-2">
-                  <select
-                    id="countries"
-                    class="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 p-2.5 text-sm text-blue-gray-500 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                  >
-                    <option selected>Choose a month</option>
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-                  </select>
-                </div>
-                <Typography variant="h7">Note</Typography>
-                <div class="col-span-2 pt-1">
-                  <Input className="h-5/5" label="Optional" /> <br></br>
-                  <Button
-                    className="w-full bg-gradient-to-br from-[#011F39] to-[#629FD4]"
-                    ripple={true}
-                  >
-                    Submit
-                  </Button>
-                </div>
-              </div>
-            </CardBody>
-          </Card>
-        </form>
-      </div>
       <Card>
         <CardHeader
           color="transparent"
@@ -128,6 +61,7 @@ export function Notifications() {
                           "Month",
                           "Notes",
                           "Status",
+                          "",
                         ].map((el) => (
                           <th
                             key={el}
@@ -194,6 +128,14 @@ export function Notifications() {
                                   className="py-0.5 px-2 text-[11px] font-medium"
                                 />
                               </td>
+                              <td className={className}>
+                                <Button
+                                  className="w-full bg-gradient-to-br from-[#011F39] to-[#629FD4]"
+                                  ripple={true}
+                                >
+                                  Edit
+                                </Button>
+                              </td>
                             </tr>
                           );
                         }
@@ -210,4 +152,4 @@ export function Notifications() {
   );
 }
 
-export default Notifications;
+export default Bendahara;

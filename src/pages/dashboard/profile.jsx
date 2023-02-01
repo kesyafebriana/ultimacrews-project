@@ -13,7 +13,7 @@ export function Profile() {
   const profile = UserData[id.id - 1];
 
   return (
-    <>
+    <div className="overflow-hidden">
       <div className="relative mt-8 h-52 w-full overflow-hidden rounded-xl bg-cover	bg-center">
         <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-[#011F39] to-[#629FD4]" />
       </div>
@@ -21,11 +21,13 @@ export function Profile() {
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between gap-6">
             <div className="flex items-center gap-6">
-              <img
-                src={profile.image}
-                className="max-w-64 max-h-64 rounded-lg object-cover shadow-lg shadow-blue-gray-500/40"
-              />
               <div>
+                <img
+                  src={profile.image}
+                  className="max-w-64 max-h-64 rounded-lg object-cover shadow-lg shadow-blue-gray-500/40"
+                />
+              </div>
+              <div className="col-span-2">
                 <Typography variant="h5" color="blue-gray" className="mb-1">
                   {profile.name}
                 </Typography>
@@ -89,7 +91,7 @@ export function Profile() {
                   </div>
                   <div class="grid grid-cols-2">
                     <div class="px-4 py-2 font-semibold">Email</div>
-                    <div class="px-4 py-2">
+                    <div class="flex px-4 py-2">
                       <a class="text-blue-800" href={"mailto:" + profile.email}>
                         {profile.email}
                       </a>
@@ -116,7 +118,7 @@ export function Profile() {
                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                 placeholder="Write your messages here..."
               ></textarea>
-              <div class="flex mt-3 mb-3 ml-1">
+              <div class="mt-3 mb-3 ml-1 flex">
                 <div class="flex h-5 items-center">
                   <input
                     id="helper-checkbox"
@@ -137,7 +139,8 @@ export function Profile() {
                     id="helper-checkbox-text"
                     class="text-xs font-normal text-gray-500 dark:text-gray-300"
                   >
-                    Your message will be sent anonymously, but can still be seen by HRD (unless your message is sent to HRD).
+                    Your message will be sent anonymously, but can still be seen
+                    by HRD (unless your message is sent to HRD).
                   </p>
                 </div>
               </div>
@@ -151,7 +154,7 @@ export function Profile() {
           </div>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 }
 

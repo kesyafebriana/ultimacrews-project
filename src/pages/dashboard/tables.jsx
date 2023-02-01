@@ -20,6 +20,18 @@ export function Tables() {
     const response = await axios.get("https://backend-ultimacrews-project.vercel.app/users");
     setUsers(response.data);
   };
+  // console.log(getUsers)
+
+  const urlFetch = fetch('https://backend-ultimacrews-project.vercel.app/uangkas')
+   urlFetch.then( res => {
+      if(res.status === 200)
+         return res.json()   
+   }).then( resJson => {
+      this.setState({
+          data: resJson
+      })
+   })
+   console.log(urlFetch);
 
   const filter = (e) => {
     const keyword = e.target.value;

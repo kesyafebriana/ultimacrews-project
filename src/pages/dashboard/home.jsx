@@ -24,7 +24,7 @@ export function Home() {
         Hello, {user.name}!
       </Typography>
       <div class="grid md:grid-cols-2">
-        <div className="mr-4">
+        <div className="md:mr-4 mb-4">
         <Card className="h-full">
           <CardHeader
             color="transparent"
@@ -32,9 +32,6 @@ export function Home() {
             shadow={false}
             className="m-0 p-4"
           >
-            {/* <Typography variant="h5" color="blue-gray">
-              A message for you
-            </Typography> */}
           </CardHeader>
           <CardBody className="flex flex-col gap-4 p-4 overflow-auto my-auto">
             <Typography variant="h4" className="text-center">
@@ -46,7 +43,7 @@ export function Home() {
           </CardBody>
         </Card>
         </div>
-        <div className="">
+        <div className="mb-4">
         <Card>
           <CardHeader
             color="transparent"

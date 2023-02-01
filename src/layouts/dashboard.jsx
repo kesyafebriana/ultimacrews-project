@@ -23,10 +23,10 @@ export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
 
-  const userBendahara = false;
+  const userBendahara = true;
   const userHrd = false;
   const userAdmin = false;
-  const user = true;
+  const user = false;
 
   const dispatch2 = useDispatch();
   const navigate = useNavigate();
