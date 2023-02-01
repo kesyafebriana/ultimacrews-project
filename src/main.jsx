@@ -24,9 +24,13 @@ import "../public/css/tailwind.css";
 import axios from "axios";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
 axios.defaults.withCredentials = true;
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+
+const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -34,7 +38,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ThemeProvider>
         <MaterialTailwindControllerProvider>
           <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
             <App />
+            </PersistGate>
           </Provider>
         </MaterialTailwindControllerProvider>
       </ThemeProvider>

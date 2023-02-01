@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import random from "random";
 import {
   Typography,
@@ -11,18 +11,31 @@ import {
 import UserData from "../../data/users.json";
 import Evaluation from "../../data/evaluation.json";
 import Quotes from "../../data/quotes.json";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 export function Home() {
   const loggedUser = 1;
   const quote = random.int(0,102);
-  const user = UserData[loggedUser-1];
+  // const user = UserData[loggedUser-1];
+  
+  const { user } = useSelector((state) => state.auth);
+
+  const [users, setUsers] = useState([]);
+
+  const getUsers = async () => {
+    const response = await axios.get("https://backend-ultimacrews-project.vercel.app/users");
+    setUsers(response.data);
+    console.log(response.data)
+  };
   
   const evaluation = Evaluation.filter(item => item.userIdReceiver.includes(loggedUser));
   return (
     <>
       <Typography className="mt-3 mb-4 block text-xl font-semibold text-[#011F39]">
-        Hello, {user.name}!
+        Hello, {user.username}!
       </Typography>
+      <button onClick={getUsers}>tes fetch api</button>
       <div class="grid md:grid-cols-2">
         <div className="md:mr-4 mb-4">
         <Card className="h-full">
