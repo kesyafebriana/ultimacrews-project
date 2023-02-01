@@ -15,7 +15,7 @@ import App from "./App";
 // import { BrowserRouter } from "react-router-dom";
 
 import { BrowserRouter, HashRouter, useNavigate } from "react-router-dom";
-import { browserHistory } from "react-router";
+// import { browserHistory } from "react-router";
 
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "@/context";
