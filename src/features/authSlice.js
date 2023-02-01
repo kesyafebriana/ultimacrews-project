@@ -13,7 +13,7 @@ export const LoginUser = createAsyncThunk(
   "user/LoginUser",
   async (user, thunkAPI) => {
     try {
-      const response = await axios.post("https://backend-ultimacrews-project-j4t5isdnu-bellashrns.vercel.app/login", {
+      const response = await axios.post("https://backend-ultimacrews-project.vercel.app/login", {
         email: user.email,
         password: user.password
       });
@@ -26,7 +26,7 @@ export const LoginUser = createAsyncThunk(
 
 export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
   try {
-    const response = await axios.get("https://backend-ultimacrews-project-j4t5isdnu-bellashrns.vercel.app/me");
+    const response = await axios.get("https://backend-ultimacrews-project.vercel.app/me");
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -34,7 +34,7 @@ export const getMe = createAsyncThunk("user/getMe", async (_, thunkAPI) => {
 });
 
 export const Logout = createAsyncThunk("user/Logout", async () => {
-  await axios.delete("https://backend-ultimacrews-project-j4t5isdnu-bellashrns.vercel.app/logout");
+  await axios.delete("https://backend-ultimacrews-project.vercel.app/logout");
 });
 
 export const authSlice = createSlice({
