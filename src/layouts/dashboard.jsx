@@ -22,19 +22,30 @@ import { getMe } from "@/features/authSlice.js";
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
-
-  const userBendahara = true;
-  const userHrd = false;
-  const userAdmin = false;
-  const user = false;
+  const [userBendahara, setUserBendahara] = useState(false);
+  const [userAdmin, setUserAdmin] = useState(false);
+  const [userHrd, setUserHrd] = useState(false);
+  const [userNormal, setUserNormal] = useState(false);
 
   const dispatch2 = useDispatch();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
+  const { user, isError } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch2(getMe());
   }, [dispatch2]);
+
+  useEffect(() => {
+    if(user.role==="user"){
+      setUserNormal(true);
+    } else if(user.role==="admin"){
+      setUserAdmin(true);
+    } else if(user.role==="bendahara"){
+      setUserBendahara(true);
+    } else if(user.role==="hrd"){
+      setUserHrd(true);
+    }
+  });
 
   useEffect(() => {
     if (isError) {
@@ -68,7 +79,7 @@ export function Dashboard() {
           }
         /> : null
       }
-      {user ?
+      {userNormal ?
         <Sidenav
           routes={routesuser}
           brandImg={

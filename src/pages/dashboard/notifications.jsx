@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import ModalImage from "react-modal-image";
 import {
   Typography,
@@ -23,18 +23,43 @@ import UserData from "../../data/users.json";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { authorsTableData, projectsTableData } from "@/data";
 import UangKas from "../../data/uangKas.json";
+import { useSelector } from "react-redux";
+import axios from "axios";
+
+const UPLOAD_ENDPOINT = "https://backend-ultimacrews-project.vercel.app/uangkas";
 
 export function Notifications() {
-  const loggedUser = 1;
-  const user = UserData[loggedUser - 1];
+  const { user } = useSelector((state) => state.auth);
+  const [file, setFile] = useState(null);
+  const [month, setMonth] = useState("");
+  const [notes, setNotes] = useState("");
+  const [approval, setApproval] = useState("Pending");
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (event) => {
+    setStatus(""); 
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("userId", user._id);
+    formData.append("image", file);
+    formData.append("bulan", month);
+    formData.append("notes", notes);
+    formData.append("status", approval);
+    const resp = await axios.post(UPLOAD_ENDPOINT, formData, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    setStatus(resp.status === 200 ? "Thank you!" : "Error.");
+  };
 
   return (
     <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
       <Typography className="mt-3 block text-xl font-semibold text-[#011F39]">
-        Hello, {user.name}!
+        Hello, {user.username}!
       </Typography>
       <div class="">
-        <form method="post" enctype="multipart/form-data">
+        <form onSubmit={handleSubmit} method="post" enctype="multipart/form-data">
           <Card>
             <CardHeader
               color="transparent"
@@ -55,6 +80,7 @@ export function Notifications() {
                     class="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 from-[#011F39] to-[#629FD4] p-2.5 text-sm text-blue-gray-500 file:mr-2 file:rounded-md file:border-x-0 file:border-y-0 file:bg-gradient-to-br file:px-7 file:py-2 file:text-white focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     id="default_size"
                     type="file"
+                    onChange={(e) => setFile(e.target.files[0])}
                   ></input>
                   <p
                     class="mt-1 text-sm text-gray-500 dark:text-gray-300"
@@ -69,6 +95,7 @@ export function Notifications() {
                   <select
                     id="countries"
                     class="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 p-2.5 text-sm text-blue-gray-500 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    onChange={(e) => setMonth(e.target.value)}
                   >
                     <option selected>Choose a month</option>
                     <option value="January">January</option>
@@ -87,9 +114,10 @@ export function Notifications() {
                 </div>
                 <Typography variant="h7">Note</Typography>
                 <div class="col-span-2 pt-1">
-                  <Input className="h-5/5" label="Optional" /> <br></br>
+                  <Input type="text" className="h-5/5" label="Optional" onChange={(e) => setNotes(e.target.value)} value={notes}/> <br></br>
                   <Button
                     className="w-full bg-gradient-to-br from-[#011F39] to-[#629FD4]"
+                    type="submit"
                     ripple={true}
                   >
                     Submit

@@ -13,20 +13,52 @@ import Evaluation from "../../data/evaluation.json";
 import Quotes from "../../data/quotes.json";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useEffect } from "react";
 
 export function Home() {
   const loggedUser = 1;
-  const quote = random.int(0,102);
-  // const user = UserData[loggedUser-1];
-  
+  const [quote,setQuote] = useState(random.int(0,102));
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const { user } = useSelector((state) => state.auth);
+  const [url,setUrl] = useState("https://backend-ultimacrews-project.vercel.app/users/"+user._id);
+  const [status, setStatus] = useState("");
 
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // const getUsers = async () => {
+  //   const response = await axios.get("https://backend-ultimacrews-project.vercel.app/users");
+  //   setUsers(response.data);
+  //   console.log(response.data)
+  // };
 
-  const getUsers = async () => {
-    const response = await axios.get("https://backend-ultimacrews-project.vercel.app/users");
-    setUsers(response.data);
-    console.log(response.data)
+  const formData = {
+    "password": password,
+    "newPassword": newPassword,
+    "confirmPassword": confirmPassword,
+  };
+
+  useEffect(() => {
+    setQuote(random.int(0,102));
+  },[])
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // const formData = new FormData();
+    // formData.append("password", password);
+    // formData.append("newPassword", newPassword);
+    // formData.append("confirmPassword", confirmPassword);
+    // console.log(password);
+    console.log(formData);
+    const resp = await axios.patch(url, formData);
+    if(resp.status===201){
+      setPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setStatus("Done!");
+    } else {
+      setStatus("Error! Please make sure your entry is correct.");
+    }
   };
   
   const evaluation = Evaluation.filter(item => item.userIdReceiver.includes(loggedUser));
@@ -35,7 +67,7 @@ export function Home() {
       <Typography className="mt-3 mb-4 block text-xl font-semibold text-[#011F39]">
         Hello, {user.username}!
       </Typography>
-      <button onClick={getUsers}>tes fetch api</button>
+      {/* <button onClick={getUsers}>tes fetch api</button> */}
       <div class="grid md:grid-cols-2">
         <div className="md:mr-4 mb-4">
         <Card className="h-full">
@@ -69,22 +101,24 @@ export function Home() {
             </Typography>
           </CardHeader>
           <CardBody className="p-4">
-            <form>
-              <Input variant="static" type="password" label="Old Password"></Input> <br />
-              <Input variant="static" type="password" label="New Password"></Input> <br />
-              <Input variant="static" type="password" label="Confirm New Password"></Input> <br />
+            <form onSubmit={handleSubmit}>
+              <Input variant="static" type="password" onChange={(e) => setPassword(e.target.value)} value={password} label="Old Password"></Input> <br />
+              <Input variant="static" type="password" onChange={(e) => setNewPassword(e.target.value)} value={newPassword} label="New Password"></Input> <br />
+              <Input variant="static" type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} label="Confirm New Password"></Input> <br />
               <Button
                 className="mt-1 bg-gradient-to-br from-[#011F39] to-[#629FD4]"
                 ripple={true}
+                type="submit"
               >
                 Change Password
               </Button>
+              {status!=="" && <p className="mt-2">{status}</p>}
             </form>
           </CardBody>
         </Card>
         </div>
       </div>
-      <Card className="mt-10">
+      {/* <Card className="mt-10">
       <CardHeader variant="gradient" className="mb-1 p-6 bg-gradient-to-br from-[#011F39] to-[#629FD4]">
           <Typography variant="h4" color="white">
             Here are some feedbacks for you!
@@ -113,7 +147,7 @@ export function Home() {
               )):<h1 className="ml-2 mb-5">Belum ada pesan untukmu. . .</h1>}
               </div>
         </CardBody>
-      </Card>
+      </Card> */}
     </>
   );
 }

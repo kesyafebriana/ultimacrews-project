@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -17,7 +18,7 @@ import { useEffect, useState } from "react";
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [status, setStatus] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ export function SignIn() {
 
   useEffect(() => {
     if (user || isSuccess) {
-      navigate("/dashboard");
+      navigate("/dashboard/home");
     }
     // dispatch(reset());
   }, [user, isSuccess, dispatch, navigate]);
@@ -84,6 +85,7 @@ export function SignIn() {
               {/* </Link> */}
             </CardFooter>
           </Card>
+          <p>{status}</p>
         </form>
         
       </div>
