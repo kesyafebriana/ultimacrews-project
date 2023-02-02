@@ -23,6 +23,8 @@ export function SignUp() {
           <CardHeader
             variant="gradient"
             color="blue"
+            shadow={false}
+            floated={false}
             className="mb-4 grid h-28 place-items-center"
           >
             <Typography variant="h3" color="white">

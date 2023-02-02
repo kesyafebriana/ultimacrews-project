@@ -77,6 +77,7 @@ export function Home() {
           <Card className="h-full">
             <CardHeader
               color="transparent"
+              variant="filled"
               floated={false}
               shadow={false}
               className="m-0 p-4"
@@ -95,6 +96,7 @@ export function Home() {
           <Card>
             <CardHeader
               color="transparent"
+              variant="filled"
               floated={false}
               shadow={false}
               className="m-0 p-4"

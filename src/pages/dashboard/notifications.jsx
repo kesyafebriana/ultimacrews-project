@@ -67,6 +67,7 @@ export function Notifications() {
         >
           <Card>
             <CardHeader
+              variant="filled"
               color="transparent"
               floated={false}
               shadow={false}
@@ -142,6 +143,7 @@ export function Notifications() {
       </div>
       <Card>
         <CardHeader
+          variant="filled"
           color="transparent"
           floated={false}
           shadow={false}

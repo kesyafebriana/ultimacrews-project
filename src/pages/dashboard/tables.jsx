@@ -55,6 +55,9 @@ export function Tables() {
       <Card>
         <CardHeader
           variant="gradient"
+          color=""
+          shadow={false}
+          floated={false}
           className="mb-1 bg-gradient-to-br from-[#011F39] to-[#629FD4] p-6"
         >
           <Typography variant="h6" color="white">

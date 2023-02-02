@@ -13,6 +13,8 @@ export function StatisticsCard({ color, icon, title, value, footer }) {
       <CardHeader
         variant="gradient"
         color={color}
+        shadow={false}
+        floated={false}
         className="absolute -mt-4 grid h-16 w-16 place-items-center"
       >
         {icon}

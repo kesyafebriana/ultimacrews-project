@@ -35,6 +35,7 @@ export function Bendahara() {
       </Typography>
       <Card>
         <CardHeader
+          variant="filled"
           color="transparent"
           floated={false}
           shadow={false}

@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -51,6 +50,9 @@ export function SignIn() {
             <CardHeader
               variant="gradient"
               className="mb-4 grid h-28 place-items-center bg-gradient-to-r from-[#011F39] to-[#629FD4]"
+              color=""
+              shadow={false}
+              floated={false}
             >
               <Typography variant="h3" color="white">
                 Sign In
@@ -74,20 +76,19 @@ export function SignIn() {
             </CardBody>
             <CardFooter className="pt-0">
               {/* <Link to="../../dashboard/home"> */}
-                <Button
-                  type="submit"
-                  variant="gradient"
-                  className="bg-gradient-to-r from-[#011F39] to-[#629FD4]"
-                  fullWidth
-                >
-                  Sign In
-                </Button>
+              <Button
+                type="submit"
+                variant="gradient"
+                className="bg-gradient-to-r from-[#011F39] to-[#629FD4]"
+                fullWidth
+              >
+                Sign In
+              </Button>
               {/* </Link> */}
             </CardFooter>
           </Card>
           <p>{status}</p>
         </form>
-        
       </div>
     </>
   );
