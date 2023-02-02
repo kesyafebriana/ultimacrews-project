@@ -15,7 +15,7 @@ export * from "@/pages/dashboard/bendahara";
 //             data: 'image',
 //             render: function(data, type){
 //                 if (type === 'display'){
-//                     return `<a href="${data}" target="_blank"><img class="w-48" src="${data}"></a>`
+//                     return `<a href="${data}" target="_blank"><img className="w-48" src="${data}"></a>`
 //                 }
 //                 return data
 //             },

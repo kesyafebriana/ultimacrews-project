@@ -17,12 +17,14 @@ import { useEffect } from "react";
 
 export function Home() {
   const loggedUser = 1;
-  const [quote,setQuote] = useState(random.int(0,102));
+  const [quote, setQuote] = useState(random.int(0, 102));
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { user } = useSelector((state) => state.auth);
-  const [url,setUrl] = useState("https://backend-ultimacrews-project.vercel.app/users/"+user._id);
+  const [url, setUrl] = useState(
+    "https://backend-ultimacrews-project.vercel.app/users/" + user._id
+  );
   const [status, setStatus] = useState("");
 
   // const [users, setUsers] = useState([]);
@@ -33,14 +35,14 @@ export function Home() {
   // };
 
   const formData = {
-    "password": password,
-    "newPassword": newPassword,
-    "confirmPassword": confirmPassword,
+    password: password,
+    newPassword: newPassword,
+    confirmPassword: confirmPassword,
   };
 
   useEffect(() => {
-    setQuote(random.int(0,102));
-  },[])
+    setQuote(random.int(0, 102));
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,7 +53,7 @@ export function Home() {
     // console.log(password);
     console.log(formData);
     const resp = await axios.patch(url, formData);
-    if(resp.status===201){
+    if (resp.status === 201) {
       setPassword("");
       setNewPassword("");
       setConfirmPassword("");
@@ -60,62 +62,84 @@ export function Home() {
       setStatus("Error! Please make sure your entry is correct.");
     }
   };
-  
-  const evaluation = Evaluation.filter(item => item.userIdReceiver.includes(loggedUser));
+
+  const evaluation = Evaluation.filter((item) =>
+    item.userIdReceiver.includes(loggedUser)
+  );
   return (
     <>
       <Typography className="mt-3 mb-4 block text-xl font-semibold text-[#011F39]">
         Hello, {user.username}!
       </Typography>
       {/* <button onClick={getUsers}>tes fetch api</button> */}
-      <div class="grid md:grid-cols-2">
-        <div className="md:mr-4 mb-4">
-        <Card className="h-full">
-          <CardHeader
-            color="transparent"
-            floated={false}
-            shadow={false}
-            className="m-0 p-4"
-          >
-          </CardHeader>
-          <CardBody className="flex flex-col gap-4 p-4 overflow-auto my-auto">
-            <Typography variant="h4" className="text-center">
-              {Quotes[quote].quote}
-            </Typography>
-            <Typography className="text-center">
-              - {Quotes[quote].author}
-            </Typography>
-          </CardBody>
-        </Card>
+      <div className="grid md:grid-cols-2">
+        <div className="mb-4 md:mr-4">
+          <Card className="h-full">
+            <CardHeader
+              color="transparent"
+              floated={false}
+              shadow={false}
+              className="m-0 p-4"
+            ></CardHeader>
+            <CardBody className="my-auto flex flex-col gap-4 overflow-auto p-4">
+              <Typography variant="h4" className="text-center">
+                {Quotes[quote].quote}
+              </Typography>
+              <Typography className="text-center">
+                - {Quotes[quote].author}
+              </Typography>
+            </CardBody>
+          </Card>
         </div>
         <div className="mb-4">
-        <Card>
-          <CardHeader
-            color="transparent"
-            floated={false}
-            shadow={false}
-            className="m-0 p-4"
-          >
-            <Typography variant="h5" color="blue-gray">
-              Change Password
-            </Typography>
-          </CardHeader>
-          <CardBody className="p-4">
-            <form onSubmit={handleSubmit}>
-              <Input variant="static" type="password" onChange={(e) => setPassword(e.target.value)} value={password} label="Old Password"></Input> <br />
-              <Input variant="static" type="password" onChange={(e) => setNewPassword(e.target.value)} value={newPassword} label="New Password"></Input> <br />
-              <Input variant="static" type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} label="Confirm New Password"></Input> <br />
-              <Button
-                className="mt-1 bg-gradient-to-br from-[#011F39] to-[#629FD4]"
-                ripple={true}
-                type="submit"
-              >
+          <Card>
+            <CardHeader
+              color="transparent"
+              floated={false}
+              shadow={false}
+              className="m-0 p-4"
+            >
+              <Typography variant="h5" color="blue-gray">
                 Change Password
-              </Button>
-              {status!=="" && <p className="mt-2">{status}</p>}
-            </form>
-          </CardBody>
-        </Card>
+              </Typography>
+            </CardHeader>
+            <CardBody className="p-4">
+              <form onSubmit={handleSubmit}>
+                <Input
+                  variant="static"
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  label="Old Password"
+                ></Input>{" "}
+                <br />
+                <Input
+                  variant="static"
+                  type="password"
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  value={newPassword}
+                  label="New Password"
+                ></Input>{" "}
+                <br />
+                <Input
+                  variant="static"
+                  type="password"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  value={confirmPassword}
+                  label="Confirm New Password"
+                ></Input>{" "}
+                <br />
+                <Button
+                  className="mt-1 bg-gradient-to-br from-[#011F39] to-[#629FD4]"
+                  ripple={true}
+                  type="submit"
+                >
+                  Change Password
+                </Button>
+                {status !== "" && <p className="mt-2">{status}</p>}
+              </form>
+            </CardBody>
+          </Card>
         </div>
       </div>
       {/* <Card className="mt-10">

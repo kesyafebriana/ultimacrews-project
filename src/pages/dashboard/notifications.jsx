@@ -26,7 +26,8 @@ import UangKas from "../../data/uangKas.json";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const UPLOAD_ENDPOINT = "https://backend-ultimacrews-project.vercel.app/uangkas";
+const UPLOAD_ENDPOINT =
+  "https://backend-ultimacrews-project.vercel.app/uangkas";
 
 export function Notifications() {
   const { user } = useSelector((state) => state.auth);
@@ -37,7 +38,7 @@ export function Notifications() {
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (event) => {
-    setStatus(""); 
+    setStatus("");
     event.preventDefault();
     const formData = new FormData();
     formData.append("userId", user._id);
@@ -58,8 +59,12 @@ export function Notifications() {
       <Typography className="mt-3 block text-xl font-semibold text-[#011F39]">
         Hello, {user.username}!
       </Typography>
-      <div class="">
-        <form onSubmit={handleSubmit} method="post" enctype="multipart/form-data">
+      <div className="">
+        <form
+          onSubmit={handleSubmit}
+          method="post"
+          enctype="multipart/form-data"
+        >
           <Card>
             <CardHeader
               color="transparent"
@@ -72,18 +77,18 @@ export function Notifications() {
               </Typography>
             </CardHeader>
             <CardBody className="flex flex-col gap-4 overflow-auto p-4">
-              <div class="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 <Typography variant="h7">File</Typography>
 
-                <div class="col-span-2">
+                <div className="col-span-2">
                   <input
-                    class="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 from-[#011F39] to-[#629FD4] p-2.5 text-sm text-blue-gray-500 file:mr-2 file:rounded-md file:border-x-0 file:border-y-0 file:bg-gradient-to-br file:px-7 file:py-2 file:text-white focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    className="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 from-[#011F39] to-[#629FD4] p-2.5 text-sm text-blue-gray-500 file:mr-2 file:rounded-md file:border-x-0 file:border-y-0 file:bg-gradient-to-br file:px-7 file:py-2 file:text-white focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     id="default_size"
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
                   ></input>
                   <p
-                    class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                    className="mt-1 text-sm text-gray-500 dark:text-gray-300"
                     id="file_input_help"
                   >
                     JPG, JPEG, PNG (MAX. 2MB)
@@ -91,10 +96,10 @@ export function Notifications() {
                 </div>
 
                 <Typography variant="h7">Month</Typography>
-                <div class="col-span-2">
+                <div className="col-span-2">
                   <select
                     id="countries"
-                    class="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 p-2.5 text-sm text-blue-gray-500 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    className="dark:bg--700 block w-full rounded-lg border border-blue-gray-200 p-2.5 text-sm text-blue-gray-500 focus:border-blue-500 focus:ring-blue-500 dark:border-blue-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     onChange={(e) => setMonth(e.target.value)}
                   >
                     <option selected>Choose a month</option>
@@ -113,8 +118,15 @@ export function Notifications() {
                   </select>
                 </div>
                 <Typography variant="h7">Note</Typography>
-                <div class="col-span-2 pt-1">
-                  <Input type="text" className="h-5/5" label="Optional" onChange={(e) => setNotes(e.target.value)} value={notes}/> <br></br>
+                <div className="col-span-2 pt-1">
+                  <Input
+                    type="text"
+                    className="h-5/5"
+                    label="Optional"
+                    onChange={(e) => setNotes(e.target.value)}
+                    value={notes}
+                  />{" "}
+                  <br></br>
                   <Button
                     className="w-full bg-gradient-to-br from-[#011F39] to-[#629FD4]"
                     type="submit"
@@ -142,10 +154,10 @@ export function Notifications() {
         <CardBody className="flex flex-col gap-4 p-4">
           <div className="grid grid-cols-3 gap-2">
             <div className="relative col-span-3 overflow-x-auto">
-              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+              <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div
                   id="recipients"
-                  class="mt-6 overflow-x-auto rounded bg-white shadow lg:mt-0"
+                  className="mt-6 overflow-x-auto rounded bg-white shadow lg:mt-0"
                 >
                   <table className="w-full min-w-[640px] table-auto">
                     <thead>

@@ -47,10 +47,10 @@ export function Bendahara() {
         <CardBody className="flex flex-col gap-4 p-4">
           <div className="grid grid-cols-3 gap-2">
             <div className="relative col-span-3 overflow-x-auto">
-              <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+              <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div
                   id="recipients"
-                  class="mt-6 overflow-x-auto rounded bg-white shadow lg:mt-0"
+                  className="mt-6 overflow-x-auto rounded bg-white shadow lg:mt-0"
                 >
                   <table className="w-full min-w-[640px] table-auto">
                     <thead>
