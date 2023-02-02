@@ -8,12 +8,28 @@ import {
   Button,
 } from "@material-tailwind/react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "@/features/authSlice.js";
 
 export function Profile() {
   const id = useParams();
   const [url, setUrl] = useState("https://backend-ultimacrews-project.vercel.app/users/"+id.id);
   const [profile, setProfile] = useState([]);
   const [loading, setLoading] = useState(true);
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { user, isError, isSuccess } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch2(getMe());
+  }, [dispatch2]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
   
   useEffect(() => {
     async function fetchData(){

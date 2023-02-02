@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -38,6 +37,12 @@ export function SignIn() {
     dispatch(LoginUser({ email, password }));
   };
 
+  useEffect(() => {
+    if (message === "User tidak ditemukan!" || message === "Wrong Password!") {
+      setStatus("Invalid email or password!");
+    }
+  });
+
   return (
     <>
       <img
@@ -74,20 +79,20 @@ export function SignIn() {
             </CardBody>
             <CardFooter className="pt-0">
               {/* <Link to="../../dashboard/home"> */}
-                <Button
-                  type="submit"
-                  variant="gradient"
-                  className="bg-gradient-to-r from-[#011F39] to-[#629FD4]"
-                  fullWidth
-                >
-                  Sign In
-                </Button>
+              <Button
+                type="submit"
+                variant="gradient"
+                className="bg-gradient-to-r from-[#011F39] to-[#629FD4]"
+                fullWidth
+              >
+                Sign In
+              </Button>
               {/* </Link> */}
+
+              <p className=" mt-3 text-center text-red-600 ">{status}</p>
             </CardFooter>
           </Card>
-          <p>{status}</p>
         </form>
-        
       </div>
     </>
   );

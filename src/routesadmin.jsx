@@ -7,7 +7,7 @@ import {
   BanknotesIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
-import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
+import { Home, Profile, Tables, Notifications, Bendahara } from "@/pages/dashboard";
 import { SignIn, SignUp } from "@/pages/auth";
 
 const icon = {
@@ -29,6 +29,18 @@ export const routes = [
         name: "Data Ultimacrews",
         path: "/data-ultimacrews",
         element: <Tables />,
+      },
+      {
+        icon: <BanknotesIcon {...icon} />,
+        name: "Uang Kas",
+        path: "/uang-kas",
+        element: <Notifications />,
+      },
+      {
+        icon: <BanknotesIcon {...icon} />,
+        name: "Data Uang Kas",
+        path: "/data-uang-kas",
+        element: <Bendahara />,
       },
     ],
   },

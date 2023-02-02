@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import ModalImage from "react-modal-image";
 import {
   Typography,
@@ -23,15 +23,44 @@ import UserData from "../../data/users.json";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { authorsTableData, projectsTableData } from "@/data";
 import UangKas from "../../data/uangKas.json";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "@/features/authSlice.js";
+
+const UPLOAD_ENDPOINT = "https://backend-ultimacrews-project.vercel.app/uangkas";
 
 export function Bendahara() {
-  const loggedUser = 1;
-  const user = UserData[loggedUser - 1];
+  const [file, setFile] = useState(null);
+  const [month, setMonth] = useState("");
+  const [notes, setNotes] = useState("");
+  const [username, setUsername] = useState("");
+  const [approval, setApproval] = useState("Pending");
+  const [status, setStatus] = useState("");
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { user, isError, isSuccess } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch2(getMe());
+  }, [dispatch2]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUsername(user.username);
+    }
+  }, [isSuccess]);
 
   return (
     <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
       <Typography className="mt-3 block text-xl font-semibold text-[#011F39]">
-        Hello, Bendahara!
+        Hello, {username}!
       </Typography>
       <Card>
         <CardHeader
@@ -129,12 +158,9 @@ export function Bendahara() {
                                 />
                               </td>
                               <td className={className}>
-                                <Button
-                                  className="w-full bg-gradient-to-br from-[#011F39] to-[#629FD4]"
-                                  ripple={true}
-                                >
+                                <Typography className="text-xs font-semibold text-blue-gray-600">
                                   Edit
-                                </Button>
+                                </Typography>
                               </td>
                             </tr>
                           );
