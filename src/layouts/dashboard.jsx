@@ -29,13 +29,20 @@ export function Dashboard() {
 
   const dispatch2 = useDispatch();
   const navigate = useNavigate();
-  const { user, isError } = useSelector((state) => state.auth);
+  const { user, isError, isSuccess } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch2(getMe());
   }, [dispatch2]);
 
   useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
+
+  useEffect(() => {
+    if (isSuccess){
     if(user.role==="user"){
       setUserNormal(true);
     } else if(user.role==="admin"){
@@ -45,13 +52,8 @@ export function Dashboard() {
     } else if(user.role==="hrd"){
       setUserHrd(true);
     }
+  }
   });
-
-  useEffect(() => {
-    if (isError) {
-      navigate("/auth/sign-in");
-    }
-  }, [isError, navigate]);
   
   return (
     <div className="min-h-screen bg-blue-gray-50/50">

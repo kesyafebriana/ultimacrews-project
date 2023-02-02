@@ -8,24 +8,39 @@ import {
   Input,
   Button,
 } from "@material-tailwind/react";
-import UserData from "../../data/users.json";
-import Evaluation from "../../data/evaluation.json";
 import Quotes from "../../data/quotes.json";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "@/features/authSlice.js";
 
 export function Home() {
-  const loggedUser = 1;
-  const [quote, setQuote] = useState(random.int(0, 102));
+  const [quote,setQuote] = useState(random.int(0,102));
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { user } = useSelector((state) => state.auth);
-  const [url, setUrl] = useState(
-    "https://backend-ultimacrews-project.vercel.app/users/" + user._id
-  );
-  const [status, setStatus] = useState("");
+  const [username, setUsername] = useState("");
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { user, isError, isSuccess } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch2(getMe());
+  }, [dispatch2]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUsername(user.username);
+    }
+  }, [isSuccess]);
+  
 
   // const [users, setUsers] = useState([]);
   // const getUsers = async () => {
@@ -51,9 +66,8 @@ export function Home() {
     // formData.append("newPassword", newPassword);
     // formData.append("confirmPassword", confirmPassword);
     // console.log(password);
-    console.log(formData);
-    const resp = await axios.patch(url, formData);
-    if (resp.status === 201) {
+    const resp = await axios.patch("https://backend-ultimacrews-project.vercel.app/users/"+user._id, formData);
+    if(resp.status===201){
       setPassword("");
       setNewPassword("");
       setConfirmPassword("");
@@ -62,14 +76,12 @@ export function Home() {
       setStatus("Error! Please make sure your entry is correct.");
     }
   };
-
-  const evaluation = Evaluation.filter((item) =>
-    item.userIdReceiver.includes(loggedUser)
-  );
+  
+  // const evaluation = Evaluation.filter(item => item.userIdReceiver.includes(loggedUser));
   return (
     <>
       <Typography className="mt-3 mb-4 block text-xl font-semibold text-[#011F39]">
-        Hello, {user.username}!
+        Hello, {username}!
       </Typography>
       {/* <button onClick={getUsers}>tes fetch api</button> */}
       <div className="grid md:grid-cols-2">

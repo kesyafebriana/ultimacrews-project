@@ -9,12 +9,28 @@ import {
 import { Link } from "react-router-dom";
 import users from "../../data/users.json";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "@/features/authSlice.js";
 
 export function Tables() {
   const [name, setName] = useState("");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [foundUsers, setFoundUsers] = useState([]);
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { user, isError, isSuccess } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch2(getMe());
+  }, [dispatch2]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
 
   useEffect(() => {
     async function fetchData() {

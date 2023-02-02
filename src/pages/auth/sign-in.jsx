@@ -37,6 +37,12 @@ export function SignIn() {
     dispatch(LoginUser({ email, password }));
   };
 
+  useEffect(() => {
+    if (message === "User tidak ditemukan!" || message === "Wrong Password!") {
+      setStatus("Invalid email or password!");
+    }
+  });
+
   return (
     <>
       <img
@@ -85,9 +91,10 @@ export function SignIn() {
                 Sign In
               </Button>
               {/* </Link> */}
+
+              <p className=" mt-3 text-center text-red-600 ">{status}</p>
             </CardFooter>
           </Card>
-          <p>{status}</p>
         </form>
       </div>
     </>

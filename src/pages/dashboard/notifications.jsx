@@ -23,19 +23,40 @@ import UserData from "../../data/users.json";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { authorsTableData, projectsTableData } from "@/data";
 import UangKas from "../../data/uangKas.json";
-import { useSelector } from "react-redux";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "@/features/authSlice.js";
 
 const UPLOAD_ENDPOINT =
   "https://backend-ultimacrews-project.vercel.app/uangkas";
 
 export function Notifications() {
-  const { user } = useSelector((state) => state.auth);
   const [file, setFile] = useState(null);
   const [month, setMonth] = useState("");
   const [notes, setNotes] = useState("");
+  const [username, setUsername] = useState("");
   const [approval, setApproval] = useState("Pending");
   const [status, setStatus] = useState("");
+  const dispatch2 = useDispatch();
+  const navigate = useNavigate();
+  const { user, isError, isSuccess } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch2(getMe());
+  }, [dispatch2]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/auth/sign-in");
+    }
+  }, [isError, navigate]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setUsername(user.username);
+    }
+  }, [isSuccess]);
 
   const handleSubmit = async (event) => {
     setStatus("");
@@ -57,7 +78,7 @@ export function Notifications() {
   return (
     <div className="mx-auto flex max-w-screen-xl flex-col gap-8">
       <Typography className="mt-3 block text-xl font-semibold text-[#011F39]">
-        Hello, {user.username}!
+        Hello, {username}!
       </Typography>
       <div className="">
         <form
